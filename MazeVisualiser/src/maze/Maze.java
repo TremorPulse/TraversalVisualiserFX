@@ -29,7 +29,6 @@ public class Maze {
     private Map<Node, Node> cameFrom;
     private Map<Node, Integer> gScore;
 
-    // Metrics variables
     private String algorithmType;
     private long visualTime;
     public int mainMemoryWrites;
@@ -67,8 +66,8 @@ public class Maze {
     // Randomized depth-first search implementation (also known as the “recursive backtracker” algorithm)
     public boolean generateMazeDFS() {
         if (stack.isEmpty()) {
-            endCell = steps.get(steps.size() - 1); // Set end cell to last visited cell
-            return false; // Maze generation is complete
+            endCell = steps.get(steps.size() - 1); 
+            return false; 
         }
 
         long startTime = System.currentTimeMillis();
@@ -85,10 +84,10 @@ public class Maze {
         for (int i = 0; i < 4; i++) {
             directions.add(i);
         }
-        Collections.shuffle(directions); // Randomize the order of directions
+        Collections.shuffle(directions);
 
         for (int i : directions) {
-            int nx = x + dx[i] * 2; // Calculate the next cell coordinates
+            int nx = x + dx[i] * 2; 
             int ny = y + dy[i] * 2;
 
             if (nx > 0 && ny > 0 && nx < row - 1 && ny < col - 1 && grid[nx][ny] == WALL) {
@@ -120,10 +119,9 @@ public class Maze {
 
         return true; // Maze generation is not yet complete
     }
-
+    // Generate an open maze with some random obstacles
     public void generateOpenMaze() {
-        // Generate an open maze with some random obstacles
-        // This is a simple implementation, you might want to create a more complex one
+
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
                 grid[i][j] = Math.random() < 0.3 ? WALL : PATH;
